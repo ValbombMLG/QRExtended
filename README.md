@@ -1,8 +1,10 @@
-# QR+ (ExtendedQR)
+# QRExtended (QR+)
+
+## **!!!Under Construction!!!**
 
 **Hybrid Standard + Extended QR Code Generator and Scanner**
 
-QR+ (ExtendedQR) is a Python-based tool that allows you to create **hybrid QR codes** combining:
+QRExtended is a Python-based tool that allows you to create **hybrid QR codes** combining:
 
 1. A **standard QR stub** — readable by any normal QR scanner, containing:
    - Sequence info for the extended reader
