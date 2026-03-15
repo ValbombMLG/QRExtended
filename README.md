@@ -109,6 +109,12 @@ See [changelog.txt](changelog.txt).
 
 **VB Studios**
 
+## Relevant links
+
+**[Linktree](https://linktr.ee/ValbombMLG)**
+
+**[Ko-fi](https://ko-fi.com/valbombmlg)**
+
 ---
 
 ## License
