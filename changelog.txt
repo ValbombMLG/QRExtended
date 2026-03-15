@@ -1,0 +1,49 @@
+QRExtended - v1.0 beta (November 2025)
+
+1-bit encoding
+
+
+----------------------------
+
+QRExtended - v2.0 beta (December 2025)
+
+8-bit encoding
+
+
+----------------------------
+
+QRExtended - v1.0 (December 2025)
+
+Full build
+
+
+----------------------------
+
+QRExtended - v3.0 (January 2026)
+
+Tkinter UI
+
+
+----------------------------
+
+QRExtended - v3.1 (March 2026)
+
+- Qt UI (PySide6), replaces Tkinter
+- Drag & drop with visual hover highlight
+- Path validation (green/red border feedback)
+- File preview screen before scanning
+- Progress screen: indeterminate bounce animation, elapsed time, ETA
+- Credits dialog, footer with GitHub/Ko-fi links
+- Debug mode with persistence (QSettings)
+- Console suppression on Windows (pythonw relaunch)
+- Power throttling disabled on Windows (full speed when minimized)
+- 64-bit file size support (previously capped at ~4.29 GB)
+- Expanded file extension table (~130 types)
+- Vectorized pixel encoding with numpy (~6x faster)
+- Large file path rewritten with mmap + band processing (~3.5x faster)
+- Sampled checksum for files >=250 MB (head + mid samples + tail)
+- Abort working end-to-end
+- Memory leak fixes (tempfile, PIL image, timer cleanup)
+- Dead code removed
+- tkinter dependency removed from scan backend (cross-platform)
+- Web version (Pyodide, GitHub Pages)

@@ -1,3 +1,4 @@
-qrcode[pil]
-Pillow
+PySide6
 numpy
+Pillow
+qrcode[pil]

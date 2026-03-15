@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRExtended v3.1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+</head>
+<body>
+
+  <header>
+    <span class="logo">QRExtended <span class="version">v3.1</span></span>
+    <div id="status-bar">
+      <span class="status-dot"></span>
+      <span id="status-text">Initialising…</span>
+    </div>
+    <nav>
+      <a href="https://github.com/ValbombMLG/QRExtended" target="_blank">GitHub</a>
+      <a href="https://ko-fi.com/valbombmlg" target="_blank">Ko-fi</a>
+    </nav>
+  </header>
+
+  <div class="window">
+    <div class="tabs">
+      <button id="tab-encode" class="tab active">Creator</button>
+      <button id="tab-decode" class="tab">Scanner</button>
+    </div>
+
+    <div id="progress-wrap" class="hidden">
+      <div id="progress-track"><div id="progress-bar"></div></div>
+      <span id="progress-msg"></span>
+    </div>
+
+    <!-- Creator -->
+    <div id="panel-encode" class="panel">
+      <div class="field-row">
+        <label>Input File</label>
+        <div class="file-row">
+          <input id="encode-path" type="text" readonly placeholder="Drop a file here or browse…" />
+          <button id="encode-browse" class="btn-secondary" disabled>Browse</button>
+          <input id="encode-input" type="file" hidden />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <label>Output Filename <span class="hint">(optional)</span></label>
+        <input id="encode-outname" type="text" placeholder="(auto from input)" />
+      </div>
+
+      <div class="field-row">
+        <label class="checkbox-label">
+          <input id="encode-autorun" type="checkbox" />
+          Allow autorun (file will open after scan)
+        </label>
+      </div>
+
+      <div class="action-row">
+        <button id="encode-btn" class="btn-primary" disabled>Create QR+</button>
+      </div>
+
+      <div id="encode-result" class="result-box hidden"></div>
+    </div>
+
+    <!-- Scanner -->
+    <div id="panel-decode" class="panel hidden">
+      <div class="field-row">
+        <label>Input QR+ Image</label>
+        <div class="file-row">
+          <input id="decode-path" type="text" readonly placeholder="Drop a QR+ image here or browse…" />
+          <button id="decode-browse" class="btn-secondary" disabled>Browse</button>
+          <input id="decode-input" type="file" accept="image/png" hidden />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <label>Output <span class="hint">(browser download)</span></label>
+        <input type="text" value="Browser download folder" readonly class="readonly-info" />
+      </div>
+
+      <div id="decode-preview" class="preview-card hidden">
+        <div class="preview-row">
+          <span class="preview-label">File</span>
+          <span id="preview-name" class="preview-value"></span>
+        </div>
+        <div class="preview-row">
+          <span class="preview-label">Size</span>
+          <span id="preview-size" class="preview-value"></span>
+        </div>
+        <div class="preview-row">
+          <span class="preview-label">Parts</span>
+          <span id="preview-parts" class="preview-value"></span>
+        </div>
+      </div>
+
+      <div id="decode-multipart-warn" class="warn-box hidden">
+        ⚠ Multi-part QR+ images require the desktop app.
+      </div>
+
+      <div class="field-row">
+        <label class="checkbox-label warn-label">
+          <input id="decode-skip-checksum" type="checkbox" />
+          Skip checksum verification (unsafe)
+        </label>
+      </div>
+
+      <div class="action-row">
+        <button id="decode-btn" class="btn-primary" disabled>Scan QR+</button>
+      </div>
+
+      <div id="decode-result" class="result-box hidden"></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>QRExtended v3.1</span>
+    <span class="sep">·</span>
+    <a href="#" id="credits-link">Credits</a>
+    <span class="sep">·</span>
+    <span class="footer-note">Runs entirely in your browser — no files are uploaded.</span>
+  </footer>
+
+  <div id="credits-overlay" class="overlay hidden">
+    <div class="dialog">
+      <h2>Credits</h2>
+      <div class="credits-row"><span class="credits-role">Designer</span><span>ValbombMLG</span></div>
+      <div class="credits-row"><span class="credits-role">Prototyping</span><span>Nova Steele</span></div>
+      <div class="credits-row"><span class="credits-role">Programming</span><span>Ash Claude</span></div>
+      <p class="credits-studio">VB Studios</p>
+      <button id="credits-close" class="btn-secondary">Close</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

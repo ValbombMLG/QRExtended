@@ -205,3 +205,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# QRExtended specific
+config.ini
+*.png
+*.tmp
+*.dat
+*.part
+test.py
+test.png
+Ash*/
