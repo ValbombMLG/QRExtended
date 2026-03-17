@@ -1,0 +1,53 @@
+name: Build Desktop Apps
+
+on:
+  workflow_dispatch:  # Manual trigger only — run from the Actions tab
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            output_name: QRExtended-Win.exe
+            pyinstaller_args: --noconsole --onefile qrext_qt.py --name QRExtended-Win
+          - os: macos-latest
+            output_name: QRExtended-Mac
+            pyinstaller_args: --noconsole --onefile qrext_qt.py --name QRExtended-Mac
+          - os: ubuntu-latest
+            output_name: QRExtended-Linux
+            pyinstaller_args: --noconsole --onefile qrext_qt.py --name QRExtended-Linux
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Linux display dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgl1 libglib2.0-0 libxkbcommon-x11-0 \
+            libxcb-icccm4 libxcb-image0 libxcb-keysyms1 \
+            libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 \
+            libxcb-xfixes0 libdbus-1-3 libxcb-cursor0
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt pyinstaller
+
+      - name: Build with PyInstaller
+        run: pyinstaller ${{ matrix.pyinstaller_args }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.output_name }}
+          path: dist/${{ matrix.output_name }}
+          retention-days: 30
